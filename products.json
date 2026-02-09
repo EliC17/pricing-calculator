@@ -1,0 +1,8 @@
+{
+    "products":[
+        {"id":"P001", "name":"Drill", "basePrice":"100.00", "category":"Electronics", "unit":"each"},
+        {"id":"P002", "name":"Hammer", "basePrice":"50.00", "category":"Electronics", "unit":"each"},
+        {"id":"P003", "name":"Spanner", "basePrice":"40.00", "category":"Electronics", "unit":"each"},
+        {"id":"P004", "name":"Mower", "basePrice":"500.00", "category":"Electronics", "unit":"each"}
+    ]
+}

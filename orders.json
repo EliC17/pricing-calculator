@@ -1,0 +1,12 @@
+{
+    "order":[
+        {"productId":"P001", "quantity":12},
+        {"productId":"P002", "quantity":20},
+        {"productId":"P003", "quantity":5}
+    ],
+    "customerType":"wholesale",
+    "region":"North America",
+    "currency":"USD",
+    "promoCode":"SAVE10",
+    "isFirstTime":false
+}
