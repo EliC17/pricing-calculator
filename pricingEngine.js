@@ -1,5 +1,6 @@
 const data = require("./products.json");
 const orderList = require("./orders.json");
+const config = require("./config.js");
 
 function getProductById(id){
     const item = data.products.find(p => p.id === id)
@@ -54,4 +55,9 @@ function applyPromoCode(processedOrders){
     console.table(processedOrders);
 }
 
+function calculateTax(code){
+    console.log(config.conversions);
+}
+
 applyPromoCode(calculateLineItem());
+calculateTax("AUD");
