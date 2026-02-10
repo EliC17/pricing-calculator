@@ -5,7 +5,6 @@ const config = require("./config.js");
 function getProductById(id){
     const item = data.products.find(p => p.id === id)
     if (item) {
-        //console.log(`Found: ${item.name}`);
         return item;
     } else {
         console.log('Item not found');
@@ -88,11 +87,20 @@ async function convertCurrency(order) {
     }
     console.log("Converted Currency to USD: ")
     console.table(order);
+    return order;
 }
 
+async function main(){
+    let itemOrder = calculateLineItem();
+    let taxedOrder = calculateTax(itemOrder);
+    let discountedOrder = applyPromoCode(taxedOrder);
+    const finalOrder = await convertCurrency(discountedOrder);
+    let total = 0;
+    for(const it of finalOrder){
+        total += it[2];
+    }
+    const totalRounded = total.toFixed(2);
+    console.log("Total Amount for this Order:", totalRounded);
+}
 
-let itemOrder = calculateLineItem();
-let taxedOrder = calculateTax(itemOrder);
-let discountedOrder = applyPromoCode(taxedOrder);
-convertCurrency(discountedOrder);
-
+main();
