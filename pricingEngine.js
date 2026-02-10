@@ -40,7 +40,8 @@ function calculateLineItem(){
         ordersTemp.push(p.productId, p.quantity, total)
         orderDetails.push(ordersTemp);
     })
-    //console.table(orderDetails);
+    console.log("Order Details: ");
+    console.table(orderDetails);
     return orderDetails;
 }
 
@@ -52,13 +53,34 @@ function applyPromoCode(processedOrders){
             order[2] = newTotal;
         }
     }
+    console.log("Discounted Orders: ");
     console.table(processedOrders);
+    return processedOrders;
 }
 
-async function calculateTax(code) {
-    const tempy = await config.testApi()
-    console.log(tempy);
+async function convertCurrency(order) {
+    const tempCurrency = await config.testApi();
+    let currency = orderList.currency;
+    for(const values of order){
+        if(currency == "CAD"){
+            let newTotal = values[2] / tempCurrency["CAD"];
+            values[2] = newTotal;
+        }
+        if(currency == "Eur"){
+            let newTotal = values[2] / tempCurrency["EUR"];
+            values[2] = newTotal;
+        }
+        if(currency == "AUD"){
+            let newTotal = values[2] / tempCurrency["AUD"];
+            values[2] = newTotal;
+        }
+    }
+    console.log("Converted Currency to USD: ")
+    console.table(order);
 }
 
-applyPromoCode(calculateLineItem());
-calculateTax("AUD");
+
+let itemOrder = calculateLineItem();
+let discountedOrder = applyPromoCode(itemOrder);
+convertCurrency(discountedOrder);
+

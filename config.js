@@ -12,9 +12,9 @@ export async function testApi() {
     console.log("Error");
     }else{
         var data = await response.json();
-        tempObj.cad = data.data.CAD.value;
-        tempObj.eur = data.data.EUR.value;
-        tempObj.aud = data.data.AUD.value;
+        tempObj.CAD = data.data.CAD.value;
+        tempObj.EUR = data.data.EUR.value;
+        tempObj.AUD = data.data.AUD.value;
         return tempObj;
     }
 }
