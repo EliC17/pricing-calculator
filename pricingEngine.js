@@ -55,8 +55,9 @@ function applyPromoCode(processedOrders){
     console.table(processedOrders);
 }
 
-function calculateTax(code){
-    console.log(config.conversions);
+async function calculateTax(code) {
+    const tempy = await config.testApi()
+    console.log(tempy);
 }
 
 applyPromoCode(calculateLineItem());
