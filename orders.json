@@ -5,7 +5,7 @@
         {"productId":"P003", "quantity":5}
     ],
     "customerType":"wholesale",
-    "region":"North America",
+    "region":"Australia",
     "currency":"AUD",
     "promoCode":"SAVE10",
     "isFirstTime":false

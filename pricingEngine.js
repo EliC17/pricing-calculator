@@ -12,16 +12,6 @@ function getProductById(id){
     }
 }
 
-function getProductByName(name){
-    const item = data.products.find(p => p.name === name)
-    if (item) {
-        console.log(`Found: ${item.name}`);
-        return item;
-    } else {
-        console.log('Item not found');
-    }
-}
-
 function calculateLineItem(){
     const orderDetails = [];
     orderList.order.forEach(p => {
@@ -43,6 +33,27 @@ function calculateLineItem(){
     console.log("Order Details: ");
     console.table(orderDetails);
     return orderDetails;
+}
+
+function calculateTax(order){
+    let region = orderList.region;
+    for(const values of order){
+        if(region == "North America"){
+            let newTotal = values[2] + (values[2] * 0.30);
+            values[2] = newTotal;
+        }
+        if(region == "Australia"){
+            let newTotal = values[2] + (values[2] * 0.10);
+            values[2] = newTotal;
+        }
+        if(region == "France"){
+            let newTotal = values[2] + (values[2] * 0.200);
+            values[2] = newTotal;
+        }
+    }
+    console.log("Apply Tax: ");
+    console.table(order);
+    return order;
 }
 
 function applyPromoCode(processedOrders){
@@ -81,6 +92,7 @@ async function convertCurrency(order) {
 
 
 let itemOrder = calculateLineItem();
-let discountedOrder = applyPromoCode(itemOrder);
+let taxedOrder = calculateTax(itemOrder);
+let discountedOrder = applyPromoCode(taxedOrder);
 convertCurrency(discountedOrder);
 
